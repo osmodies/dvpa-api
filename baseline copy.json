@@ -1,0 +1,64 @@
+{  
+  "results": [
+    {
+      "code": "12 username = 'admin'\n13 password = 'secret'\n14 \n15 # Disqus Configuration\n16 disqus_shortname = 'blogpythonlearning'  # please change this.\n",
+      "col_offset": 11,
+      "filename": "./flaskblog/config.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: 'secret'",
+      "line_number": 13,
+      "line_range": [
+        13,
+        14,
+        15
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.4/plugins/b105_hardcoded_password_string.html",
+      "test_id": "B105",
+      "test_name": "hardcoded_password_string"
+    },
+    {
+      "code": "70 \n71         hashed_password = hashlib.md5(password.encode()).hexdigest()\n72         cur = db.connection.cursor()\n",
+      "col_offset": 26,
+      "filename": "./flaskblog/blogapi/user.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 327,
+        "link": "https://cwe.mitre.org/data/definitions/327.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of insecure MD2, MD4, MD5, or SHA1 hash function.",
+      "line_number": 71,
+      "line_range": [
+        71
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.4/blacklists/blacklist_calls.html#b303-md5",
+      "test_id": "B303",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "247             elif export_format == \"yaml\":\n248                 import_post_data = yaml.load(import_data)\n249 \n",
+      "col_offset": 35,
+      "filename": "./flaskblog/blogapi/dashboard.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 20,
+        "link": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().",
+      "line_number": 248,
+      "line_range": [
+        248
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.4/plugins/b506_yaml_load.html",
+      "test_id": "B506",
+      "test_name": "yaml_load"
+    }
+  ]
+}
